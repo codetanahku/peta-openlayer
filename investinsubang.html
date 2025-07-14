@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestInSubang</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #3bb7c3 0%, #22b8cc 100%);
+        }
+        .map-container {
+            height: 400px;
+            background-color: #46c257;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23e2e8f0"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23cbd5e0" stroke-width="1"/></svg>');
+            background-size: 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #96947d;
+        }
+        .info-card {
+            transition: all 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 50;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header/Navbar -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-map-marked-alt text-blue-600 text-2xl"></i>
+                <span class="text-xl font-bold text-blue-800">Invest In Subang</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#beranda" class="text-blue-600 font-medium hover:text-blue-800">Beranda</a>
+                <a href="#edukasi" class="text-gray-600 hover:text-blue-600">Tentang</a>
+                <a href="#tentang" class="text-gray-600 hover:text-blue-600">Layanan DPMPTSP Subang</a>
+                <a href="#peta" class="text-gray-600 hover:text-blue-600">Peta Interaktif</a>
+                <a href="#tentang" class="text-gray-600 hover:text-blue-600">Dokumen</a>
+                <a href="#tentang" class="text-gray-600 hover:text-blue-600">Infografis</a>
+                <a href="#tentang" class="text-gray-600 hover:text-blue-600">Artikel</a>
+            </div>
+            <button class="md:hidden text-gray-600" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white py-2 px-4 shadow-md" id="mobile-menu">
+            <a href="#beranda" class="text-blue-600 font-medium hover:text-blue-800">Beranda</a>
+            <a href="#edukasi" class="text-gray-600 hover:text-blue-600">Tentang</a>
+            <a href="#tentang" class="text-gray-600 hover:text-blue-600">Layanan DPMPTSP Subang</a>
+            <a href="#peta" class="text-gray-600 hover:text-blue-600">Peta Interaktif</a>
+            <a href="#tentang" class="text-gray-600 hover:text-blue-600">Dokumen</a>
+            <a href="#tentang" class="text-gray-600 hover:text-blue-600">Infografis</a>
+            <a href="#tentang" class="text-gray-600 hover:text-blue-600">Artikel</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero-gradient text-white py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Portal Informasi Investasi di Kabupaten Subang</h1>
+                    <p class="text-xl mb-8 opacity-90">Platform informasi dan edukasi pertanahan, perijinan dan tata ruang untuk masyarakat umum.</p>
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                        <a href="#peta" class="bg-white text-blue-700 px-6 py-3 rounded-lg font-medium text-center hover:bg-gray-100 transition">Layanan Pertanahan</a>
+                        <a href="#edukasi" class="border border-white text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-white hover:bg-opacity-10 transition">Peta Interaktif</a>
+                        <a href="#edukasi" class="border border-white text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-white hover:bg-opacity-10 transition">Peraturan</a>
+                        <a href="#edukasi" class="border border-white text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-white hover:bg-opacity-10 transition">Infografis</a>
+                        <a href="#edukasi" class="border border-white text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-white hover:bg-opacity-10 transition">Artikel</a>
+                    </div>
+                </div>
+                
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Apa yang Kami Tawarkan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="info-card bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100">
+                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-graduation-cap text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Edukasi Sederhana</h3>
+                    <p class="text-gray-600">Materi pembelajaran tata ruang yang mudah dipahami tanpa istilah teknis yang membingungkan.</p>
+                </div>
+                <div class="info-card bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100">
+                    <div class="w-14 h-14 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-map-marked text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Peta Interaktif</h3>
+                    <p class="text-gray-600">Visualisasi data tata ruang dalam bentuk peta yang mudah diakses dan dipahami.</p>
+                </div>
+                <div class="info-card bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100">
+                    <div class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-comments text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Konsultasi</h3>
+                    <p class="text-gray-600">Forum diskusi untuk bertanya dan berbagi informasi tentang tata ruang di daerah Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="edukasi" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Edukasi Tata Ruang</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Tab Navigation -->
+                <div class="flex overflow-x-auto pb-2 mb-8 scrollbar-hide">
+                    <button class="tab-btn px-6 py-3 font-medium text-gray-600 whitespace-nowrap border-b-2 border-transparent hover:text-blue-600 active" data-tab="dasar">Dasar Tata Ruang</button>
+                    <button class="tab-btn px-6 py-3 font-medium text-gray-600 whitespace-nowrap border-b-2 border-transparent hover:text-blue-600" data-tab="zonasi">Zonasi Wilayah</button>
+                    <button class="tab-btn px-6 py-3 font-medium text-gray-600 whitespace-nowrap border-b-2 border-transparent hover:text-blue-600" data-tab="peraturan">Peraturan</button>
+                    <button class="tab-btn px-6 py-3 font-medium text-gray-600 whitespace-nowrap border-b-2 border-transparent hover:text-blue-600" data-tab="faq">FAQ</button>
+                </div>
+                
+                <!-- Tab Contents -->
+                <div class="tab-content active" id="dasar-tab">
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-800">Apa itu Tata Ruang?</h3>
+                        <p class="text-gray-600 mb-4">Tata ruang adalah pengaturan penggunaan ruang untuk berbagai kegiatan manusia seperti permukiman, industri, pertanian, dan konservasi alam.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-home text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Fungsi Permukiman</h4>
+                                    <p class="text-gray-600 text-sm">Wilayah untuk tempat tinggal penduduk dengan fasilitas pendukung.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-industry text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Fungsi Industri</h4>
+                                    <p class="text-gray-600 text-sm">Wilayah untuk kegiatan produksi dan manufaktur.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-tractor text-yellow-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Fungsi Pertanian</h4>
+                                    <p class="text-gray-600 text-sm">Wilayah untuk budidaya tanaman dan peternakan.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-tree text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Fungsi Konservasi</h4>
+                                    <p class="text-gray-600 text-sm">Wilayah untuk perlindungan alam dan keanekaragaman hayati.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="zonasi-tab">
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-800">Memahami Zonasi Wilayah</h3>
+                        <p class="text-gray-600 mb-4">Zonasi adalah pembagian wilayah berdasarkan fungsi dan peruntukannya. Setiap zona memiliki aturan penggunaan yang berbeda.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex items-start space-x-4 p-4 bg-blue-50 rounded-lg">
+                                <div class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mt-1">
+                                    <i class="fas fa-home text-blue-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Zona Permukiman</h4>
+                                    <p class="text-gray-600 text-sm">Untuk pembangunan rumah tinggal dengan kepadatan tertentu. Terbagi menjadi zona permukiman padat, sedang, dan rendah.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4 p-4 bg-green-50 rounded-lg">
+                                <div class="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                                    <i class="fas fa-building text-green-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Zona Komersial</h4>
+                                    <p class="text-gray-600 text-sm">Untuk kegiatan perdagangan dan jasa. Terbagi menjadi zona komersial skala kecil, menengah, dan besar.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4 p-4 bg-yellow-50 rounded-lg">
+                                <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mt-1">
+                                    <i class="fas fa-industry text-yellow-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Zona Industri</h4>
+                                    <p class="text-gray-600 text-sm">Untuk kegiatan industri dengan klasifikasi berdasarkan tingkat kebisingan dan polusi yang dihasilkan.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="peraturan-tab">
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-800">Peraturan Terkait Tata Ruang</h3>
+                        <p class="text-gray-600 mb-4">Berikut beberapa peraturan utama yang mengatur tata ruang di Indonesia:</p>
+                        
+                        <div class="space-y-4">
+                            <div class="p-4 border border-gray-200 rounded-lg hover:border-blue-200 hover:bg-blue-50 transition">
+                                <h4 class="font-medium text-gray-800">Undang-Undang No. 26 Tahun 2007</h4>
+                                <p class="text-gray-600 text-sm mt-1">Tentang Penataan Ruang sebagai dasar hukum utama penataan ruang di Indonesia.</p>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded-lg hover:border-green-200 hover:bg-green-50 transition">
+                                <h4 class="font-medium text-gray-800">PP No. 15 Tahun 2010</h4>
+                                <p class="text-gray-600 text-sm mt-1">Tentang Penyelenggaraan Penataan Ruang mengatur pelaksanaan penataan ruang.</p>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded-lg hover:border-purple-200 hover:bg-purple-50 transition">
+                                <h4 class="font-medium text-gray-800">Peraturan Daerah</h4>
+                                <p class="text-gray-600 text-sm mt-1">Setiap daerah memiliki peraturan tersendiri tentang Rencana Tata Ruang Wilayah (RTRW).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="faq-tab">
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-800">Pertanyaan Umum</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="border-b border-gray-200 pb-4">
+                                <button class="faq-btn flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-blue-600" data-faq="1">
+                                    <span>Bagaimana cara mengetahui zonasi tanah saya?</span>
+                                    <i class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-content mt-2 text-gray-600 hidden" data-faq="1">
+                                    Anda dapat mengecek melalui peta interaktif di website ini dengan memasukkan alamat atau koordinat lokasi tanah Anda. Atau Anda bisa menanyakan langsung ke kantor BPN atau Dinas Tata Ruang setempat.
+                                </div>
+                            </div>
+                            <div class="border-b border-gray-200 pb-4">
+                                <button class="faq-btn flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-blue-600" data-faq="2">
+                                    <span>Apa konsekuensi jika melanggar peruntukan zonasi?</span>
+                                    <i class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-content mt-2 text-gray-600 hidden" data-faq="2">
+                                    Pelanggaran peruntukan zonasi dapat dikenai sanksi administratif seperti peringatan, denda, hingga pembongkaran bangunan. Selain itu, bangunan tidak akan bisa mendapatkan IMB (Izin Mendirikan Bangunan) jika tidak sesuai peruntukan.
+                                </div>
+                            </div>
+                            <div class="border-b border-gray-200 pb-4">
+                                <button class="faq-btn flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-blue-600" data-faq="3">
+                                    <span>Apakah zonasi bisa berubah?</span>
+                                    <i class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-content mt-2 text-gray-600 hidden" data-faq="3">
+                                    Ya, zonasi bisa berubah melalui revisi Rencana Tata Ruang Wilayah (RTRW) yang biasanya dilakukan setiap 5-10 tahun. Perubahan ini harus melalui proses kajian dan persetujuan dari pemerintah daerah dan DPRD.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section id="peta" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Peta Interaktif</h2>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-gray-200">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4 md:mb-0">Peta Zonasi Wilayah</h3>
+                            <div class="flex space-x-3">
+                                <div class="relative">
+                                    <select class="appearance-none bg-gray-100 border border-gray-200 rounded-lg pl-4 pr-10 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        <option>Pilih Provinsi</option>
+                                        <option>Jawa Barat</option>
+                                        <option>Jawa Tengah</option>
+                                        <option>Jawa Timur</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                        <i class="fas fa-chevron-down text-gray-500"></i>
+                                    </div>
+                                </div>
+                                <div class="relative">
+                                    <select class="appearance-none bg-gray-100 border border-gray-200 rounded-lg pl-4 pr-10 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        <option>Pilih Kabupaten/Kota</option>
+                                        <option>Kota Bandung</option>
+                                        <option>Kabupaten Bandung</option>
+                                        <option>Kabupaten Bandung Barat</option>
+                                        <option>Kota Cimahi</option>
+                                        <option>Kabupaten Subang</option>
+                                        <option>Kabupaten Sumedang</option>
+                                        <option>Kabupaten Garut</option>
+                                        <option>Kabupaten Cianjur</option>
+                                        <option>Kabupaten Indramayu</option>
+                                        <option>Kabupaten Majalengka</option>
+                                        <option>Kabupaten Ciamis</option>
+                                        <option>Kabupaten Bogor</option>
+                                        <option>Kabupaten Sukabumi</option>
+                                        <option>Kabupaten Bekasi</option>
+                                        <option>Kota Sukabumi</option>
+                                        <option>Kota Bekasi</option>
+                                        <option>Kabupaten Purwakarta</option>
+                                        <option>Kabupaten Karawang</option>
+                                        <option>Kabupaten Kuningan</option>
+                                        <option>Kota Banjar</option>
+                                        <option>Kabupaten Ciamis</option>
+                                        <option>Kabupaten Pangandaran</option>
+                                        <option>Kabupaten Cirebon</option>
+                                        <option>Kota Cirebon</option>
+                                        <option>Kabupaten Tasikmalaya</option>
+                                        <option>Kota Tasikmalaya</option>
+                                        <option>Kabupaten Garut</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                        <i class="fas fa-chevron-down text-gray-500"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <div class="text-center">
+                                    <i class="fas fa-map-marked-alt text-5xl mb-4 opacity-30"></i>
+                                    <p class="font-medium">Pilih wilayah untuk menampilkan peta zonasi</p>
+                                    <p class="text-sm mt-2">Gunakan dropdown di atas untuk memilih provinsi dan kabupaten/kota</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">Cara Membaca Peta Zonasi</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <span class="text-blue-600 font-bold text-sm">1</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600">Setiap warna pada peta menunjukkan jenis zona yang berbeda</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <span class="text-blue-600 font-bold text-sm">2</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600">Klik pada area tertentu untuk melihat detail informasi zonasi</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <span class="text-blue-600 font-bold text-sm">3</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600">Gunakan fitur pencarian untuk menemukan lokasi tertentu</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <span class="text-blue-600 font-bold text-sm">3</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600">Klik di lokasi dimaksud. Akan muncul ketentuan umum Peraturan zonasi.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Section -->
+    <section class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-6">Butuh Bantuan Tentang Tata Ruang di Daerah Anda?</h2>
+                <p class="text-xl mb-8 opacity-90">Kami siap membantu menjawab pertanyaan dan memberikan informasi yang Anda butuhkan.</p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
+                    <a href="#" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">Ajukan Pertanyaan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="tentang" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Tentang Kami</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-8">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                                <div class="w-48 h-48 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-map-marked-alt text-blue-500 text-6xl"></i>
+                                </div>
+                            </div>
+                            <div class="md:w-2/3 md:pl-8">
+                                <h3 class="text-2xl font-semibold mb-4 text-gray-800">InvestinSubang</h3>
+                                <p class="text-gray-600 mb-4">Platform informasi  yang bertujuan untuk memberikan pemahaman tentang pertanahan, investasi, perijinan dan tata ruang kepada masyarakat umum dengan cara yang sederhana dan mudah dipahami.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-map-marked-alt text-blue-400 text-2xl"></i>
+                        <span class="text-xl font-bold">InvestinSubang</span>
+                    </div>
+                    <p class="text-gray-400">Sarana Informasi Pertanahan, Investasi, Perijinan dan Tata Ruang.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Tautan Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#beranda" class="text-gray-400 hover:text-white transition">Beranda</a></li>
+                        <li><a href="#edukasi" class="text-gray-400 hover:text-white transition">Tentang</a></li>
+                        <li><a href="#peta" class="text-gray-400 hover:text-white transition">Layanan Pertanahan</a></li>
+                        <li><a href="#tentang" class="text-gray-400 hover:text-white transition">Peta Interaktif</a></li>
+                        <li><a href="#tentang" class="text-gray-400 hover:text-white transition">Peraturan</a></li>
+                        <li><a href="#tentang" class="text-gray-400 hover:text-white transition">Infografis</a></li>
+                        <li><a href="#tentang" class="text-gray-400 hover:text-white transition">Artikel</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Kontak</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                            <span class="text-gray-400">sipintaragraria@gmail.com</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-phone-alt text-gray-400"></i>
+                            <span class="text-gray-400">(022) 1234567</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Media Sosial</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-400 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 SIPINTAR.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <button class="floating-btn w-14 h-14 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+        <i class="fas fa-question text-xl"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Tab Functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons and tabs
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Show corresponding tab
+                const tabId = this.getAttribute('data-tab') + '-tab';
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // FAQ Accordion
+        const faqButtons = document.querySelectorAll('.faq-btn');
+        faqButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const faqId = this.getAttribute('data-faq');
+                const content = document.querySelector(`.faq-content[data-faq="${faqId}"]`);
+                const icon = this.querySelector('i');
+                
+                // Toggle content
+                content.classList.toggle('hidden');
+                
+                // Rotate icon
+                if (content.classList.contains('hidden')) {
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
